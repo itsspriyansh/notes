@@ -17,13 +17,9 @@ function App() {
     setUserId(storedUserId);
   }, []);
 
+
   // Fetch notes when userId is set
   useEffect(() => {
-    if (userId) {
-      fetchNotes();
-    }
-  }, [userId]);
-
   const fetchNotes = async () => {
     try {
       const response = await fetch(`http://localhost:5001/api/notes/${userId}`);
@@ -35,6 +31,12 @@ function App() {
       console.error('Error fetching notes:', error);
     }
   };
+
+    if (userId) {
+      fetchNotes();
+    }
+  }, [userId]);
+
 
   const addNote = async (title, content) => {
     try {
